@@ -1,0 +1,36 @@
+body {
+    margin: opx;
+    background-color: aliceblue;
+    font-family: 'Nerko One';
+}
+
+.page-nav {
+    background-color: #2196f3;
+    border: 1px solid black;
+    text-align: center;
+
+}
+
+.page-title {
+    background-color: #2196f3;
+    border: 1px solid black;
+    
+}
+
+.page-title h2 {
+    text-align: center;
+}
+
+.page-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.career-container img {
+    width: 300px;
+}
+
+.career-container h3 {
+    text-align: center;
+}
