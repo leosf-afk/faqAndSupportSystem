@@ -93,7 +93,7 @@
 							<td><?php echo $faq["answer"]; ?></td>
 							<td>
 								<!-- edit button -->
-								<a href="edit.php?id=<?php echo $faq['id']; ?>" class="btn btn-warning btn-sm">
+								<a href="faqedit.php?id=<?php echo $faq['id']; ?>" class="btn btn-warning btn-sm">
 									Editar
 								</a>
 
