@@ -50,7 +50,7 @@
 			<h1 class="text-center">FAQ</h1>
 
 			<!-- for to add FAQ -->
-			<form method="POST" action="add.php">
+			<form method="POST" action="faqadd.php">
 
 				<!-- question -->
 				<div class="form-group">
@@ -77,7 +77,7 @@
 				<!-- table heading -->
 				<thead>
 					<tr>
-						<th>ID</th>
+						<th>Numero</th>
 						<th>Pregunta</th>
 						<th>Respuesta</th>
 						<th>Acciones</th>

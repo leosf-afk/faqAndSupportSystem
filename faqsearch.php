@@ -30,12 +30,8 @@ $faqs = $statement->fetchAll();
     <div class="row">
         <div class="col-md-12 accordion_one">
             <div class="panel-group">
-            <h1 style="color: black;" >FAQS</h1>
-            <br>
-            <form method="POST" action="faqsearch.php">
-            <input type="text">
-            <input type="submit" value="buscar"></input>
-            </form>
+            <h5 style="color: black;" >no encontraste lo que buscas?<a href=""> generar ticket de soporte</a></h5> 
+          
             
             <br>
                 <?php foreach ($faqs as $faq): ?>
