@@ -22,15 +22,17 @@ $faqs = $statement->fetchAll();
 <script src="js/bootstrap.js"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
+<!---radiobutton-->
+
+
 
 <!----show all faqs -->
-
 
 <div class="container" style="margin-top: 200px; float:right; ">
     <div class="row">
         <div class="col-md-12 accordion_one">
             <div class="panel-group">
-            <h5 style="color: black;" >no encontraste lo que buscas?<a href=""> generar ticket de soporte</a></h5> 
+            <h5 style="color: black;" >no encontraste lo que buscas?<a href="ticketformvanilla.php"> generar ticket de soporte</a></h5> 
           
             
             <br>
@@ -51,7 +53,16 @@ $faqs = $statement->fetchAll();
                         <div id="faq-<?php echo $faq['id']; ?>" class="panel-collapse collapse" aria-expanded="false" role="tablist" style="height: 0px;">
 			                <div class="panel-body">
 			                	<div class="text-accordion">
-			                        <?php echo $faq['answer']; ?>
+			                        <?php echo $faq['answer'];?>
+                                    <!--- radio buttom --->
+                                    <hr>
+                                    <h6>si necesita contactar con soporte o no le fue util la respuesta haga click en NO</h6>
+                                    <form action="ticketform.php" method="POST">
+                                        <input type="radio"  name="faq" value="si">Si
+                                        <input type="radio"  name="faq" value="<?php echo $faq['question'];?>">No
+                                        <input class="form-btn" name="submit" type="submit" value="Enviar">
+
+                                    </form>
 			                    </div>
 			                </div>
 			            </div>
