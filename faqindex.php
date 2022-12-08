@@ -4,10 +4,16 @@
 include "config/config.php";
 
 // get all faqs from latest to oldest
-$sql = "SELECT * FROM faqs ORDER BY id DESC";
-$statement = $conn->prepare($sql);
-$statement->execute();
-$faqs = $statement->fetchAll();
+
+$stmt = $conn->prepare("SELECT *  FROM faqs WHERE categoria LIKE :search");
+$search = '%General%';
+$stmt->bindValue(':search', $search, PDO::PARAM_STR);
+$stmt->execute();
+$faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// $rows = $conn->prepare("SELECT * * FROM faqs WHERE id LIKE ?")
+
+
 
 ?>
 
@@ -32,10 +38,12 @@ $faqs = $statement->fetchAll();
             <div class="panel-group">
             <h1 style="color: black;" >FAQS</h1>
             <br>
-            <form method="POST" action="faqsearch.php">
-            <input type="text">
+            <!-- search toolbar -->
+            <form action="faqsearch.php" method="POST" >
+            <input type="text" name="search" placeholder="Buscar una pregunta">
             <input type="submit" value="buscar"></input>
             </form>
+          
             
             <br>
                 <?php foreach ($faqs as $faq): ?>

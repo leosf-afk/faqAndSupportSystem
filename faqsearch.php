@@ -3,11 +3,24 @@
 //connect db
 include "config/config.php";
 
+// $search = $_POST["search"];
+
 // get all faqs from latest to oldest
-$sql = "SELECT * FROM faqs ORDER BY id DESC";
-$statement = $conn->prepare($sql);
-$statement->execute();
-$faqs = $statement->fetchAll();
+
+$stmt = $conn->prepare("SELECT *  FROM faqs WHERE question LIKE :search");
+$search = '%'.$_POST['search'].'%';
+$stmt->bindValue(':search', $search, PDO::PARAM_STR);
+$stmt->execute();
+$faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+// XBRSDNF6BP4R
+
+
+// $sql = "SELECT * FROM faqs ORDER BY id DESC";
+// $statement = $conn->prepare($sql);
+// $statement->execute();
+// $faqs = $statement->fetchAll();
 
 ?>
 
@@ -22,7 +35,7 @@ $faqs = $statement->fetchAll();
 <script src="js/bootstrap.js"></script>
 <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
-<!---radiobutton-->
+
 
 
 

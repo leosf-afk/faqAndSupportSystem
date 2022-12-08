@@ -80,6 +80,8 @@
 						<th>Numero</th>
 						<th>Pregunta</th>
 						<th>Respuesta</th>
+						<th>Prioridad</th>
+						<th>Categoria</th>
 						<th>Acciones</th>
 					</tr>
 				</thead>
@@ -91,6 +93,8 @@
 							<td><?php echo $faq["id"]; ?></td>
 							<td><?php echo $faq["question"]; ?></td>
 							<td><?php echo $faq["answer"]; ?></td>
+							<td><?php echo $faq["categoria"]; ?></td>
+							<td><?php echo $faq["priority"]; ?></td>
 							<td>
 								<!-- edit button -->
 								<a href="faqedit.php?id=<?php echo $faq['id']; ?>" class="btn btn-warning btn-sm">

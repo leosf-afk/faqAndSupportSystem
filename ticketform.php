@@ -66,7 +66,7 @@ var  redirect = "<?php echo $faq; ?>"
     <br>
     <br>
     <label> Documento</label>
-    <input type="text" name="dni" placeholder="documento">
+    <input type="text" name="dni" placeholder="documento sin puntos ni espacios">
     <br>
     <br>
     <label> Email</label>
