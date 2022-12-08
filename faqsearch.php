@@ -3,17 +3,24 @@
 //connect db
 include "config/config.php";
 
+// $search = $_POST["search"];
+
 // get all faqs from latest to oldest
 
-$stmt = $conn->prepare("SELECT *  FROM faqs WHERE categoria LIKE :search");
-$search = '%General%';
+$stmt = $conn->prepare("SELECT *  FROM faqs WHERE question LIKE :search");
+$search = '%'.$_POST['search'].'%';
 $stmt->bindValue(':search', $search, PDO::PARAM_STR);
 $stmt->execute();
 $faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// $rows = $conn->prepare("SELECT * * FROM faqs WHERE id LIKE ?")
+
+// XBRSDNF6BP4R
 
 
+// $sql = "SELECT * FROM faqs ORDER BY id DESC";
+// $statement = $conn->prepare($sql);
+// $statement->execute();
+// $faqs = $statement->fetchAll();
 
 ?>
 
@@ -29,20 +36,16 @@ $faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
 
 
-<!----show all faqs -->
 
+
+
+<!----show all faqs -->
 
 <div class="container" style="margin-top: 200px; float:right; ">
     <div class="row">
         <div class="col-md-12 accordion_one">
             <div class="panel-group">
-            <h1 style="color: black;" >FAQS</h1>
-            <br>
-            <!-- search toolbar -->
-            <form action="faqsearch.php" method="POST" >
-            <input type="text" name="search" placeholder="Buscar una pregunta">
-            <input type="submit" value="buscar"></input>
-            </form>
+            <h5 style="color: black;" >no encontraste lo que buscas?<a href="ticketformvanilla.php"> generar ticket de soporte</a></h5> 
           
             
             <br>
@@ -63,7 +66,16 @@ $faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <div id="faq-<?php echo $faq['id']; ?>" class="panel-collapse collapse" aria-expanded="false" role="tablist" style="height: 0px;">
 			                <div class="panel-body">
 			                	<div class="text-accordion">
-			                        <?php echo $faq['answer']; ?>
+			                        <?php echo $faq['answer'];?>
+                                    <!--- radio buttom --->
+                                    <hr>
+                                    <h6>si necesita contactar con soporte o no le fue util la respuesta haga click en NO</h6>
+                                    <form action="ticketform.php" method="POST">
+                                        <input type="radio"  name="faq" value="si">Si
+                                        <input type="radio"  name="faq" value="<?php echo $faq['question'];?>">No
+                                        <input class="form-btn" name="submit" type="submit" value="Enviar">
+
+                                    </form>
 			                    </div>
 			                </div>
 			            </div>
