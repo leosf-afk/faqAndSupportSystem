@@ -17,11 +17,14 @@
 		$statement->execute();
 
 		// insert in faqs table
-		$sql = "INSERT INTO faqs (question, answer) VALUES (?, ?)";
+		$sql = "INSERT INTO faqs (question, answer, priority, categoria) VALUES (?, ?, ?, ?)";
 		$statement = $conn->prepare($sql);
 		$statement->execute([
 			$_POST["question"],
-			$_POST["answer"]
+			$_POST["answer"],
+			$_POST["cbopripridad"],
+			$_POST["categoria"]
+
 		]);
 	}
 
@@ -58,6 +61,20 @@
 					<input type="text" name="question" class="form-control" required />
 				</div>
 
+				<div class="form-group">
+					<label>Establecer prioridad:</label>
+					<select name="cbopripridad">
+						<option value="Alta">Alta</option>
+						<option value="Media">Media</option>
+						<option value="Baja">Baja</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label>Escriba la categoria:</label>
+					<input type="text" name="categoria" class="form-control" required />
+				</div>
+
 				<!-- answer -->
 				<div class="form-group">
 					<label>Añadir respuesta</label>
@@ -80,8 +97,8 @@
 						<th>Numero</th>
 						<th>Pregunta</th>
 						<th>Respuesta</th>
-						<th>Prioridad</th>
 						<th>Categoria</th>
+						<th>Prioridad</th>
 						<th>Acciones</th>
 					</tr>
 				</thead>
