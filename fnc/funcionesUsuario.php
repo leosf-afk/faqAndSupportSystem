@@ -33,13 +33,13 @@
 	// 	}	
 	// }
 
-	function Registro($nombre,$usuario, $clave) // carga registro
+	function Registro($usuario,$clave, $nombre) // carga registro
 	{		
 		try
 		{
 			require_once("config/config.php");
 
-			$sql = "CALL SP_REGISTRO('$nombre', '$usuario', '$clave')";
+			$sql = "CALL SP_REGISTRO('$usuario', '$clave', '$nombre')";
 			
 			//echo "<h3>" . $sql . "</h3>";
 		
@@ -52,7 +52,7 @@
 			
 			return 0;
 			
-		    $link = null;
+		    $conn = null;
 		}
 		catch (PDOException $e)
 		{
