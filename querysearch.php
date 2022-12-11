@@ -7,6 +7,9 @@ include "config/config.php";
 
 $user = $_SESSION["username"];
 
+$search = $_POST["search"];
+
+
 
 if (empty($user)) {
     $destino = "error.html";
@@ -22,9 +25,11 @@ if (empty($user)) {
 	// $statement->execute();
 	// $querys = $statement->fetchAll();
 
-	$sql = "SELECT * FROM consultas as c INNER JOIN faqs as f ON c.faqs_id = f.id ";
-	$statement = $conn->prepare($sql);
-	$statement->execute();
+	$statement = $conn->prepare("SELECT *  FROM consultas as c INNER JOIN faqs as f ON c.faqs_id = f.id
+	 WHERE legajo LIKE :search OR nombre LIKE :search OR priority LIKE :search ");
+$search = '%'.$_POST['search'].'%';
+$statement->bindValue(':search', $search, PDO::PARAM_STR);
+$statement->execute();
 	$querys = $statement->fetchAll();
 
 
@@ -109,11 +114,3 @@ if (empty($user)) {
 			</table>
 		</div>
 	</div>
-
-
-<script>
-	// initialize rich text library
-	window.addEventListener("load", function () {
-		$("#answer").richText();
-	});
-</script>
