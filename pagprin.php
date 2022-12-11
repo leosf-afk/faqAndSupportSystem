@@ -20,7 +20,7 @@
 	<link rel="stylesheet" type="text/css" href="styleslogin.css">
 
 </head>
-<body>queryformpendiente.php
+<body>
 	<ul>
 		<li><a class="active" onclick="window.location.href='pagprin.php'">Home</a></li>
 		<li><a onclick="window.location.href='faqadd.php'">FAQS</a></li>
