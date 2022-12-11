@@ -125,7 +125,7 @@ if (!isset($_SESSION)) { session_start(); }
 				<!-- table heading -->
 				<thead>
 					<tr>
-							
+							<!-- search toolbar -->
 	<form action="faqform.php" method="POST" >
 		<input type="text" name="search"  placeholder="Buscar una Faq">
             <input type="submit" value="buscar"></input>
@@ -155,7 +155,7 @@ if (!isset($_SESSION)) { session_start(); }
 								</a>
 
 								<!-- delete form -->
-								<form method="POST" action="delete.php" onsubmit="return confirm('Estas seguro de eliminar esta FAQ ?');">
+								<form method="POST" action="faqdel.php" onsubmit="return confirm('Estas seguro de eliminar esta FAQ ?');">
 									<input type="hidden" name="id" value="<?php echo $faq['id']; ?>" required />
 									<input type="submit" value="Eliminar" class="btn btn-danger btn-sm" />
 								</form>
