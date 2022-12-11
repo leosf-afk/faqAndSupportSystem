@@ -27,8 +27,8 @@ if ( isset($_GET["error"]) )
 		case "2":
 			    {
 			    	$mensajeError = "Mail no valido";
-					$textoEnlace = "Ir a registro";
-					$destino = "registro.php";
+					$textoEnlace = "Ir a inicio";
+					$destino = "faqindex.php";
 			    	break;
 			    }
 		

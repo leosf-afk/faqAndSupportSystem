@@ -42,6 +42,8 @@ $faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		<li><a class="active" onclick="window.location.href='pagprin.php'">Home</a></li>
 		<li><a onclick="window.location.href='faqadd.php'">FAQS</a></li>
 	    <li><a onclick="window.location.href='queryform.php'">Consultas</a></li>
+		<li><a onclick="window.location.href='queryformpendiente.php'">Consultas pendientes</a></li>
+		<li><a onclick="window.location.href='queryformfinalizado.php'">Consultas finalizadas</a></li>
 	    <li><a onclick="window.location.href='logout.php'">Salir</a></li>
 	    <li style="float:right"><a><?php echo "Bienvenido $user";?></a></li>
 
@@ -54,7 +56,7 @@ $faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="row">
 		<div class="offset-md-2 col-md-8">
 			<table class="table table-bordered">
-				<!-- table heading -->
+				
 				<thead>
 					<tr>
 							
@@ -73,7 +75,7 @@ $faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 				<!-- table body -->
 				<tbody>
-					<!-- <?php foreach ($faqs as $faq): ?> -->
+					 <?php foreach ($faqs as $faq): ?>
 						<tr>
 							
 							<td><?php echo $faq["question"]  ?></td>

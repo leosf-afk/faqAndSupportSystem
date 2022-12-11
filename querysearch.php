@@ -7,6 +7,9 @@ include "config/config.php";
 
 $user = $_SESSION["username"];
 
+$search = $_POST["search"];
+
+
 
 if (empty($user)) {
     $destino = "error.html";
@@ -22,14 +25,18 @@ if (empty($user)) {
 	// $statement->execute();
 	// $querys = $statement->fetchAll();
 
-	$sql = "SELECT * FROM consultas as c INNER JOIN faqs as f ON c.faqs_id = f.id WHERE estado = '-' ";
-	$statement = $conn->prepare($sql);
-	$statement->execute();
+	$statement = $conn->prepare("SELECT *  FROM consultas as c INNER JOIN faqs as f ON c.faqs_id = f.id
+	 WHERE legajo LIKE :search OR nombre LIKE :search OR priority LIKE :search OR documento LIKE :search ");
+$search = '%'.$_POST['search'].'%';
+$statement->bindValue(':search', $search, PDO::PARAM_STR);
+$statement->execute();
 	$querys = $statement->fetchAll();
+////
+
+
 
 
 	
-
 ?>
 
 <!-- include bootstrap, font awesome and rich text library CSS -->
@@ -69,6 +76,7 @@ if (empty($user)) {
             <input type="text" name="search" placeholder="Buscar una consulta" >
             <input type="submit" value="buscar"></input>
             </form>
+			
 						<th>nombre</th>
 						<th>legajo</th>
 						<th>documento</th>
@@ -87,7 +95,11 @@ if (empty($user)) {
 				<tbody>
 					<?php foreach ($querys as $query): ?>
 						<tr>
-					<?php	$_SESSION["legajo_edit"] = $query['legajo']; ?>
+							<!-- harcodeado -->
+						<?php ////
+$_SESSION["legajo_edit"] = $query['legajo'];
+//// ?>
+							
 							<td><?php echo $query["nombre"]; ?></td>
 							<td><?php echo $query["legajo"]; ?></td>
 							<td><?php echo $query["documento"]; ?></td>
@@ -112,11 +124,3 @@ if (empty($user)) {
 			</table>
 		</div>
 	</div>
-
-
-<script>
-	// initialize rich text library
-	window.addEventListener("load", function () {
-		$("#answer").richText();
-	});
-</script>

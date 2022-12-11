@@ -1,7 +1,7 @@
 <?php 
 //connect db
 include "config/config.php";
-
+require("fnc/funcionesValidaciones.php");
 
 $faq = $_POST['faq'];
 
@@ -18,20 +18,33 @@ $id = $_POST['id'];
 if (isset($_POST["enviar"]))
 	{
 
-		// insert in faqs table
+
+        if ( !validarMail($_POST["email"]))
+	{
+		$destino = "error.php?error=2";
+		header("location: $destino");
+	}
+	else
+	{
+        // insert in faqs table
 		$sql = "INSERT INTO consultas (nombre, legajo, documento, email, consulta, pregunta, faqs_id)
-         VALUES (?, ?, ?, ?, ?, ?, ?)";
-		$statement = $conn->prepare($sql);
-		$statement->execute([
-			$_POST["nombre"],
-			$_POST["legajo"],
-            $_POST["dni"],
-            $_POST["email"],
-            $_POST["consulta"],
-            $_POST["pregunta"],
-            $_POST["id"]
-		]);
-        header('Location:'.'http://localhost/ticketsystem/ticketformredirect.php');
+        VALUES (?, ?, ?, ?, ?, ?, ?)";
+       $statement = $conn->prepare($sql);
+       $statement->execute([
+           $_POST["nombre"],
+           $_POST["legajo"],
+           $_POST["dni"],
+           $_POST["email"],
+           $_POST["consulta"],
+           $_POST["pregunta"],
+           $_POST["id"]
+       ]);
+       header('Location:'.'http://localhost/ticketsystem/ticketformredirect.php');
+   
+		
+	}
+
+		
 	}
 ?> 
 
