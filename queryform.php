@@ -47,8 +47,8 @@
 						<th>consulta</th>
 						<th>estado</th>
 						<th>observaciones</th>
-						<th>pregunta</th> 
 						<th>usuario</th> 
+						<th>pregunta</th> 
 						<th>fecha</th>
 					</tr>
 				</thead>

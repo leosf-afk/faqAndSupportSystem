@@ -2,7 +2,15 @@
 //connect db
 include "config/config.php";
 
-$faq = $_POST["faq"];
+
+$faq = $_POST['faq'];
+
+$id = $_POST['id'];
+
+
+
+
+// $newLangs = implode($faq);
 
 
 
@@ -11,8 +19,8 @@ if (isset($_POST["enviar"]))
 	{
 
 		// insert in faqs table
-		$sql = "INSERT INTO consultas (nombre, legajo, documento, email, consulta, pregunta)
-         VALUES (?, ?, ?, ?, ?, ?)";
+		$sql = "INSERT INTO consultas (nombre, legajo, documento, email, consulta, pregunta, faqs_id)
+         VALUES (?, ?, ?, ?, ?, ?, ?)";
 		$statement = $conn->prepare($sql);
 		$statement->execute([
 			$_POST["nombre"],
@@ -21,10 +29,13 @@ if (isset($_POST["enviar"]))
             $_POST["email"],
             $_POST["consulta"],
             $_POST["pregunta"],
+            $_POST["id"]
 		]);
-        // header('Location:'.'http://localhost/ticketsystem/faqindex.php');
+        header('Location:'.'http://localhost/ticketsystem/ticketformredirect.php');
 	}
 ?> 
+
+
 
 
 <!DOCTYPE html>
@@ -52,9 +63,8 @@ var  redirect = "<?php echo $faq; ?>"
     <h1>Rellene los campos solicitados</h1>
     <br>
     <br>
-    <label>Pregunta</label>
-    <?php $pregunta = $faq; ?>
-    <input type="text" name="pregunta" value="" placeholder="<?php echo $pregunta;?>" disabled>
+    <label>Pregunta:  <?php echo $faq;?></label>
+    <input type="text" name="pregunta" value="<?php echo $faq;?>" hidden >
     <br>
     <br>
     <label> Nombre y apellido</label>
@@ -75,6 +85,9 @@ var  redirect = "<?php echo $faq; ?>"
     <br>
     <label>Consulta</label>
     <input type="text" size=40  style="width:510px;height:160px" name="consulta" placeholder="escriba su consulta">
+    <!-- get and save id -->
+    <input type="text" name="id" value="<?php echo $id;?>" hidden >
+
     <input type="submit" name="enviar">
 </form>
 

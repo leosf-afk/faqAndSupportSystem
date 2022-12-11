@@ -14,7 +14,7 @@ $stmt->execute();
 $faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
-// XBRSDNF6BP4R
+
 
 
 // $sql = "SELECT * FROM faqs ORDER BY id DESC";
@@ -73,6 +73,7 @@ $faqs = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <form action="ticketform.php" method="POST">
                                         <input type="radio"  name="faq" value="si">Si
                                         <input type="radio"  name="faq" value="<?php echo $faq['question'];?>">No
+                                        <input type="text" name="id" value="<?php echo $faq['id'];?>" hidden>
                                         <input class="form-btn" name="submit" type="submit" value="Enviar">
 
                                     </form>

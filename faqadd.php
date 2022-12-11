@@ -1,5 +1,17 @@
 <?php
 
+// session login
+if (!isset($_SESSION)) { session_start(); }
+	require("fnc/funcionesUsuario.php");
+	
+
+	$user = $_SESSION["username"];
+
+    if (empty($user)) {
+        $destino = "error.html";
+        header("location: $destino");	
+    }
+
 	// connect with database
     include "config/config.php";
 
@@ -17,11 +29,14 @@
 		$statement->execute();
 
 		// insert in faqs table
-		$sql = "INSERT INTO faqs (question, answer) VALUES (?, ?)";
+		$sql = "INSERT INTO faqs (question, answer, priority, categoria) VALUES (?, ?, ?, ?)";
 		$statement = $conn->prepare($sql);
 		$statement->execute([
 			$_POST["question"],
-			$_POST["answer"]
+			$_POST["answer"],
+			$_POST["cbopripridad"],
+			$_POST["categoria"]
+
 		]);
 	}
 
@@ -37,11 +52,25 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css" />
 <link rel="stylesheet" type="text/css" href="richtext/richtext.min.css" />
+<link rel="stylesheet" type="text/css" href="styleslogin.css">
 
 <!-- include jquer, bootstrap and rich text JS -->
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="richtext/jquery.richtext.js"></script>
+
+
+    <ul>
+		<li><a class="active" onclick="window.location.href='pagprin.php'">Home</a></li>
+		<li><a onclick="window.location.href='faqadd.php'">FAQS</a></li>
+	    <li><a onclick="window.location.href='queryform.php'">Consultas</a></li>
+	    <li><a onclick="window.location.href='logout.php'">Salir</a></li>
+	    <li style="float:right"><a><?php echo "Bienvenido $user";?></a></li>
+
+	</ul>
+
+
+
 
 <!-- layout for form to add FAQ -->
 <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
@@ -58,6 +87,20 @@
 					<input type="text" name="question" class="form-control" required />
 				</div>
 
+				<div class="form-group">
+					<label>Establecer prioridad:</label>
+					<select name="cbopripridad">
+						<option value="Alta">Alta</option>
+						<option value="Media">Media</option>
+						<option value="Baja">Baja</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<label>Escriba la categoria:</label>
+					<input type="text" name="categoria" class="form-control" required />
+				</div>
+
 				<!-- answer -->
 				<div class="form-group">
 					<label>Añadir respuesta</label>
@@ -70,6 +113,11 @@
 		</div>
 	</div>
 
+
+
+
+		
+
 	<!-- show all FAQs added -->
 	<div class="row">
 		<div class="offset-md-2 col-md-8">
@@ -77,11 +125,16 @@
 				<!-- table heading -->
 				<thead>
 					<tr>
-						<th>Numero</th>
+							
+	<form action="faqform.php" method="POST" >
+		<input type="text" name="search"  placeholder="Buscar una Faq">
+            <input type="submit" value="buscar"></input>
+			</form>
+						
 						<th>Pregunta</th>
 						<th>Respuesta</th>
-						<th>Prioridad</th>
 						<th>Categoria</th>
+						<th>Prioridad</th>
 						<th>Acciones</th>
 					</tr>
 				</thead>
@@ -90,7 +143,7 @@
 				<tbody>
 					<?php foreach ($faqs as $faq): ?>
 						<tr>
-							<td><?php echo $faq["id"]; ?></td>
+			
 							<td><?php echo $faq["question"]; ?></td>
 							<td><?php echo $faq["answer"]; ?></td>
 							<td><?php echo $faq["categoria"]; ?></td>
