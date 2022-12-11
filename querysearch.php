@@ -26,15 +26,17 @@ if (empty($user)) {
 	// $querys = $statement->fetchAll();
 
 	$statement = $conn->prepare("SELECT *  FROM consultas as c INNER JOIN faqs as f ON c.faqs_id = f.id
-	 WHERE legajo LIKE :search OR nombre LIKE :search OR priority LIKE :search ");
+	 WHERE legajo LIKE :search OR nombre LIKE :search OR priority LIKE :search OR documento LIKE :search ");
 $search = '%'.$_POST['search'].'%';
 $statement->bindValue(':search', $search, PDO::PARAM_STR);
 $statement->execute();
 	$querys = $statement->fetchAll();
+////
+
+
 
 
 	
-
 ?>
 
 <!-- include bootstrap, font awesome and rich text library CSS -->
@@ -72,6 +74,7 @@ $statement->execute();
             <input type="text" name="search" placeholder="Buscar una consulta" >
             <input type="submit" value="buscar"></input>
             </form>
+			
 						<th>nombre</th>
 						<th>legajo</th>
 						<th>documento</th>
@@ -90,6 +93,7 @@ $statement->execute();
 				<tbody>
 					<?php foreach ($querys as $query): ?>
 						<tr>
+							
 							<td><?php echo $query["nombre"]; ?></td>
 							<td><?php echo $query["legajo"]; ?></td>
 							<td><?php echo $query["documento"]; ?></td>
@@ -103,7 +107,7 @@ $statement->execute();
 							<td><?php echo $query["fecha"]; ?></td>
 							<td>
 								<!-- edit button -->
-								<a href="faqedit.php?id=<?php echo $query['id']; ?>" class="btn btn-warning btn-sm">
+								<a href="queryupdate.php?legajo=<?php echo $query['legajo']; ?>" class="btn btn-warning btn-sm">
 									Editar
 								</a>
 

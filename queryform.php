@@ -98,7 +98,7 @@ if (empty($user)) {
 							<td><?php echo $query["fecha"]; ?></td>
 							<td>
 								<!-- edit button -->
-								<a href="faqedit.php?id=<?php echo $query['id']; ?>" class="btn btn-warning btn-sm">
+								<a href="queryupdate.php?legajo=<?php echo $query['legajo']; ?>" class="btn btn-warning btn-sm">
 									Editar
 								</a>
 
