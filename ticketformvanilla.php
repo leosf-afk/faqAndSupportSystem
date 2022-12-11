@@ -2,15 +2,19 @@
 <?php 
 //connect db
 include "config/config.php";
-
-
-
-
-
+require("fnc/funcionesValidaciones.php");
 
 //insert into query table
 if (isset($_POST["enviar"]))
 	{
+
+        if ( !validarMail($_POST["email"]))
+        {
+            $destino = "error.php?error=2";
+            header("location: $destino");
+        }
+        else
+        {
 
 		// insert in faqs table
 		$sql = "INSERT INTO consultas (nombre, legajo, documento, email, consulta)
@@ -24,6 +28,7 @@ if (isset($_POST["enviar"]))
             $_POST["consulta"]
 		]);
         header('Location:'.'http://localhost/ticketsystem/ticketformredirect.php');
+    }
 	}
 
 ?> 
