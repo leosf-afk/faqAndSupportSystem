@@ -7,31 +7,31 @@
 
 
 
-	// function Login($usuario, $clave) // verifica los datos del login en base
-	// {		
-	// 	try
-	// 	{
-	// 		require_once("config/config.php");
+	function Login($usuario, $clave) // verifica los datos del login en base
+	{		
+		try
+		{
+			require_once("config/config.php");
 
-	// 		$sql = "CALL SP_LOGIN('$usuario', '$clave')";
+			$sql = "CALL SP_LOGIN('$usuario', '$clave')";
 		
-	// 		$filas = $conn->query($sql);
+			$filas = $conn->query($sql);
 
-	// 		if ($filas)
-	// 		{
-	// 			$fila = $filas->fetch();
-	// 		}
+			if ($filas)
+			{
+				$fila = $filas->fetch();
+			}
 			
-	// 		return $fila;
+			return $fila;
 			
-	// 	    $link = null;
-	// 	}
-	// 	catch (PDOException $e)
-	// 	{
-	// 	    print "Error!: " . $e->getMessage() . "<br/>";
-	// 	    die();
-	// 	}	
-	// }
+		    $conn = null;
+		}
+		catch (PDOException $e)
+		{
+		    print "Error!: " . $e->getMessage() . "<br/>";
+		    die();
+		}	
+	}
 
 	function Registro($usuario,$clave, $nombre) // carga registro
 	{		

@@ -28,12 +28,6 @@
 		$errores[] = ", ";	
 	}
 	
-
-	if (empty($cod)) {
-		$errores[] = "Codigo no ingresado";		
-		$errores[] = ", ";
-	}
-	
 	if ($cod != $clave) {
 		$errores[] = "Codigo incorrecto";	
 		$errores[] = ", ";	

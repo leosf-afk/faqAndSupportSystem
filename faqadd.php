@@ -1,5 +1,17 @@
 <?php
 
+// session login
+if (!isset($_SESSION)) { session_start(); }
+	require("fnc/funcionesUsuario.php");
+	
+
+	$user = $_SESSION["username"];
+
+    if (empty($user)) {
+        $destino = "error.html";
+        header("location: $destino");	
+    }
+
 	// connect with database
     include "config/config.php";
 
@@ -40,11 +52,25 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.css" />
 <link rel="stylesheet" type="text/css" href="richtext/richtext.min.css" />
+<link rel="stylesheet" type="text/css" href="styleslogin.css">
 
 <!-- include jquer, bootstrap and rich text JS -->
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="richtext/jquery.richtext.js"></script>
+
+
+    <ul>
+		<li><a class="active" onclick="window.location.href='pagprin.php'">Home</a></li>
+		<li><a onclick="window.location.href='faqadd.php'">FAQS</a></li>
+	    <li><a onclick="window.location.href='queryform.php'">Consultas</a></li>
+	    <li><a onclick="window.location.href='logout.php'">Salir</a></li>
+	    <li style="float:right"><a><?php echo "Bienvenido $user";?></a></li>
+
+	</ul>
+
+
+
 
 <!-- layout for form to add FAQ -->
 <div class="container" style="margin-top: 50px; margin-bottom: 50px;">
@@ -87,6 +113,11 @@
 		</div>
 	</div>
 
+
+
+
+		
+
 	<!-- show all FAQs added -->
 	<div class="row">
 		<div class="offset-md-2 col-md-8">
@@ -94,7 +125,12 @@
 				<!-- table heading -->
 				<thead>
 					<tr>
-						<th>Numero</th>
+							
+	<form action="faqform.php" method="POST" >
+		<input type="text" name="search"  placeholder="Buscar una Faq">
+            <input type="submit" value="buscar"></input>
+			</form>
+						
 						<th>Pregunta</th>
 						<th>Respuesta</th>
 						<th>Categoria</th>
@@ -107,7 +143,7 @@
 				<tbody>
 					<?php foreach ($faqs as $faq): ?>
 						<tr>
-							<td><?php echo $faq["id"]; ?></td>
+			
 							<td><?php echo $faq["question"]; ?></td>
 							<td><?php echo $faq["answer"]; ?></td>
 							<td><?php echo $faq["categoria"]; ?></td>

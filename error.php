@@ -31,20 +31,7 @@ if ( isset($_GET["error"]) )
 					$destino = "registro.php";
 			    	break;
 			    }
-		case "3":
-			    {
-			    	$mensajeError = "Error al cargar la apuesta";
-					$textoEnlace = "Ir a pag principal";
-					$destino = "pagprin.php";
-			    	break;
-			    }
-		case "4":
-			    {
-			    	$mensajeError = "Codigo o pin incorrecto";
-					$textoEnlace = "Volver";
-					$destino = "cargSal.php";
-			    	break;
-			    }
+		
 
 				
 	}
