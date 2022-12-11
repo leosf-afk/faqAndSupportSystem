@@ -21,10 +21,18 @@ if (empty($user)) {
 	// $statement = $conn->prepare($sql);
 	// $statement->execute();
 	// $querys = $statement->fetchAll();
+    // $estado = 'finalizado';
+	// $sql = "SELECT * FROM consultas as c INNER JOIN faqs as f ON c.faqs_id = f.id  WHERE estado = $estado";
+	// $statement = $conn->prepare($sql);
+	// $statement->execute();
+	// $querys = $statement->fetchAll();
 
-	$sql = "SELECT * FROM consultas as c INNER JOIN faqs as f ON c.faqs_id = f.id WHERE estado = '-' ";
-	$statement = $conn->prepare($sql);
-	$statement->execute();
+
+    $statement = $conn->prepare("SELECT *  FROM consultas as c INNER JOIN faqs as f ON c.faqs_id = f.id
+	 WHERE  estado LIKE :estado ");
+$estado = '%'.'pendiente'.'%';
+$statement->bindValue(':estado', $estado, PDO::PARAM_STR);
+$statement->execute();
 	$querys = $statement->fetchAll();
 
 
@@ -48,8 +56,6 @@ if (empty($user)) {
 		<li><a class="active" onclick="window.location.href='pagprin.php'">Home</a></li>
 		<li><a onclick="window.location.href='faqadd.php'">FAQS</a></li>
 	    <li><a onclick="window.location.href='queryform.php'">Consultas</a></li>
-		<li><a onclick="window.location.href='queryformpendiente.php'">Consultas pendientes</a></li>
-		<li><a onclick="window.location.href='queryformfinalizado.php'">Consultas finalizadas</a></li>
 	    <li><a onclick="window.location.href='logout.php'">Salir</a></li>
 	    <li style="float:right"><a><?php echo "Bienvenido $user";?></a></li>
 
@@ -65,10 +71,7 @@ if (empty($user)) {
 				<thead>
 					<tr>
 					<!-- search toolbar -->
-<form action="querysearch.php" method="POST" >
-            <input type="text" name="search" placeholder="Buscar una consulta" >
-            <input type="submit" value="buscar"></input>
-            </form>
+
 						<th>nombre</th>
 						<th>legajo</th>
 						<th>documento</th>

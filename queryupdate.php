@@ -6,6 +6,7 @@ if (!isset($_SESSION)) { session_start(); }
 
 	$user = $_SESSION["username"];
 
+   
     if (empty($user)) {
         $destino = "error.html";
         header("location: $destino");	
@@ -30,33 +31,31 @@ if (!$query) {
 
 
 //edit logic
-if (isset($_POST["submit"]))
-	{
-		// update the FAQ in database
-		$sql = "UPDATE consultas SET estado = ?, observaciones = ?, usuario = ?  WHERE id = ?";
-		$statement = $conn->prepare($sql);
-		$statement->execute([
-			$_POST["cboestado"],
-			$_POST["observaciones"],
-            $_POST["usuario"],
-			$_POST["id"]
-		]);
+// if (isset($_POST["submit"]))
+// 	{
+// 		// update the FAQ in database
+// 		$sql = "UPDATE consultas SET estado = ?, observaciones = ?, usuario = ?  WHERE id = ?";
+// 		$statement = $conn->prepare($sql);
+// 		$statement->execute([
+// 			$_POST["cboestado"],
+// 			$_POST["observaciones"],
+//             $_POST["usuario"],
+// 			$_POST["id"]
+// 		]);
 
 
         
 
-		// redirect back to previous page
-       // $destino = "queryform.php";
-       // header("location: $destino");
+// 		// redirect back to previous page
+//        // $destino = "queryform.php";
+//        // header("location: $destino");
 
-       header("location: queryform.php");
-	}
+//        header("location: queryform.php");
+// 	}
 
 ?>
 
-<a href="faqedit.php?id=<?php echo $faq['id']; ?>" class="btn btn-warning btn-sm">
-									Editar
-								</a>
+
 
 <!-- include bootstrap, font awesome and rich text library CSS -->
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -91,7 +90,7 @@ if (isset($_POST["submit"]))
 			<h1 class="text-center">Revisar consulta</h1>
 
 			<!-- form to edit FAQ -->
-			<form method="POST" action="queryupdate.php">
+			<form method="POST" action="queryupdate2.php">
 
 				<!-- hidden ID field of FAQ -->
 				<input type="hidden" name="id" value="<?php echo $query['id']; ?>" required />

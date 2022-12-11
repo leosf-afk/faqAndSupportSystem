@@ -93,6 +93,10 @@ $statement->execute();
 				<tbody>
 					<?php foreach ($querys as $query): ?>
 						<tr>
+							<!-- harcodeado -->
+						<?php ////
+$_SESSION["legajo_edit"] = $query['legajo'];
+//// ?>
 							
 							<td><?php echo $query["nombre"]; ?></td>
 							<td><?php echo $query["legajo"]; ?></td>
@@ -107,7 +111,7 @@ $statement->execute();
 							<td><?php echo $query["fecha"]; ?></td>
 							<td>
 								<!-- edit button -->
-								<a href="queryupdate.php?legajo=<?php echo $query['legajo']; ?>" class="btn btn-warning btn-sm">
+								<a href="queryupdate.php?legajo=<?php echo $query["legajo"]; ?>" class="btn btn-warning btn-sm">
 									Editar
 								</a>
 

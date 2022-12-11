@@ -20,11 +20,13 @@
 	<link rel="stylesheet" type="text/css" href="styleslogin.css">
 
 </head>
-<body>
+<body>queryformpendiente.php
 	<ul>
 		<li><a class="active" onclick="window.location.href='pagprin.php'">Home</a></li>
 		<li><a onclick="window.location.href='faqadd.php'">FAQS</a></li>
 	    <li><a onclick="window.location.href='queryform.php'">Consultas</a></li>
+		<li><a onclick="window.location.href='queryformpendiente.php'">Consultas pendientes</a></li>
+		<li><a onclick="window.location.href='queryformfinalizado.php'">Consultas finalizadas</a></li>
 	    <li><a onclick="window.location.href='logout.php'">Salir</a></li>
 	    <li style="float:right"><a><?php echo "Bienvenido $user";?></a></li>
 
