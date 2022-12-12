@@ -14,16 +14,15 @@
 
   <form action="registroDestino.php" method="POST">
     <table id="tablaForm">
+
+             <h3>Cambio de contraseña</h3>
+
     	<tr>
     		<td>Usuario:</td> <td><input type="text" name="txtUsuario"></td>
     	</tr>
 
     	<tr>
-    	    <td>Nombre y apellido:</td><td> <input type="text" name="txtNombre"></td>
-    	</tr>
-
-    	<tr>
-    		<td>Contraseña:</td> <td><input type="text" name="txtClave"></td>
+    		<td>Nueva contraseña:</td> <td><input type="text" name="txtClave"></td>
 		</tr>
 
         <tr>
@@ -35,6 +34,6 @@
 		</tr>
 	</table>
   </form>
-  
+
 </body>
 </html>

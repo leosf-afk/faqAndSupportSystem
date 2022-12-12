@@ -140,7 +140,7 @@ if (!$query) {
 
                 <div class="form-group">
 					<label>observaciones:</label>
-					<input type="text" name="observaciones" class="form-control" value=" "  />
+					<input type="text" name="observaciones" class="form-control" value="<?php echo $query['observaciones']; ?> "  />
 				</div>
 
 
