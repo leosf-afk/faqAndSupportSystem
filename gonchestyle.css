@@ -1,0 +1,19 @@
+body{
+    background-color: rgba(56, 52, 52, 0.701);
+   
+}
+
+
+.header {
+    background-color:rgb(75, 54, 106);
+    position: relative;
+    border-radius: 7px
+}
+
+.navbar {
+    background-color: rgb(63, 47, 89);
+}
+
+footer {
+    flex:0 0 auto;
+}
